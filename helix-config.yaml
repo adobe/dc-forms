@@ -1,0 +1,14 @@
+#
+# helix configuration for local development
+#
+version: 1
+
+definitions:
+  defaults:
+    - &defaultRepo "https://github.com/adobe/dc-forms.git"
+
+strains:
+  - name: default
+    code: *defaultRepo
+    content: *defaultRepo
+    static: *defaultRepo
