@@ -1,5 +1,8 @@
 {
   "name": "dc-forms",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@adobe/helix-pipeline": "^13.7.16"
+  }
 }

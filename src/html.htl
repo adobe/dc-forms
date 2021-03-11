@@ -22,6 +22,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <title>${content.title}</title>
     <link rel="stylesheet" href="/style.css"/>
+    <script src="/forms.js"></script>
 </head>
 <body>
 

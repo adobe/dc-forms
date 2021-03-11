@@ -1,0 +1,10 @@
+.hlx/
+.cache/
+.DS_Store
+node_modules/
+pipeline.log
+logs
+log
+helix-config.yaml.old
+effective-helix-config.yaml
+.env
