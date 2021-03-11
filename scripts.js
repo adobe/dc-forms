@@ -1,6 +1,6 @@
 const searchParams = new URLSearchParams(document.location.search);
 const form = searchParams.get("form");
-document.getElementById("loading-message").innerHTML = `Loading form: ${form}`;
+
 /*
  * Create a DFL field from a spreadsheet row
  */
@@ -111,9 +111,6 @@ function createDFL(spreadsheetDefinition) {
   );
   console.dir(dfl);
   window.adobe_dc_forms={templates:{[form]: dfl}};
-  const formLocation = document.createElement("div");
-  formLocation.id = "dfl-form";
-  document.body.appendChild(formLocation);
   const formsRuntime = document.createElement("script");
   formsRuntime.src = "https://static.echocdnawspreview.com/signdx-cdn/latest/dfl/dfl-forms.bundle.js";
   formsRuntime.addEventListener(
@@ -148,4 +145,11 @@ if (form) {
     spreadsheetDefinition && createDFL(spreadsheetDefinition);
   });
 }
-
+window.addEventListener('load', () => {
+  const loading = `<div id="loading">
+    <div id="loading-message">loading form: ${form}</div>
+      <img src="/loading.gif" style="width:64px;height:64px;"></img>
+    </div>
+    <div id="dfl-form"></div>`
+  document.body.innerHTML = loading;
+});

@@ -22,13 +22,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <title>${content.title}</title>
     <link rel="stylesheet" href="/style.css"/>
+    <script src="/scripts.js"></script>
 </head>
 <body>
 
-<div id="loading">
-  <div id="loading-message"></div>
-  <img src="/loading.gif" style="width:64px;height:64px;"></img>
-</div>
-<script src="/forms.js"></script>
 </body>
 </html>
