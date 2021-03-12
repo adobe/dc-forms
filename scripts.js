@@ -12,7 +12,6 @@
 
 const searchParams = new URLSearchParams(document.location.search);
 const form = searchParams.get("form");
-console.log("loading script.js");
 /*
  * Create a DFL field from a spreadsheet row
  */
@@ -144,6 +143,7 @@ function createDFL(spreadsheetDefinition) {
         const url = "https://ccgrowth.servicebus.windows.net/formsink/messages";
         fetch(url, {
           method: "POST",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json",
             "Authorization": "SharedAccessSignature sr=https://ccgrowth.servicebus.windows.net/formsink/messages&sig=RFndMU/yHZrlchNBfHlIdulld4URAgUAQdAlqVLf1Bw=&se=1634259041&skn=send"
@@ -185,7 +185,8 @@ function load() {
     const loading = `<div id="loading">
       <div id="loading-message">loading form: ${form}</div>
         <img src="/loading.gif" style="width:64px;height:64px;"></img>
-      </div>`
+      </div>`;
+    document.body.style.backgroundColor = "white";
     document.body.innerHTML = loading;
   }
 }
