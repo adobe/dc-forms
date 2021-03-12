@@ -128,6 +128,7 @@ function createDFL(spreadsheetDefinition) {
   formsRuntime.addEventListener(
     "load",
     () => {
+      document.body.id = "dfl-form";
       window.document.dispatchEvent(new Event("DOMContentLoaded"));
       document.getElementById("loading").style.display = "none";
     },
