@@ -114,7 +114,7 @@ function createDFL(spreadsheetDefinition) {
   };
   const items = dfl.form.items;
   spreadsheetDefinition.data.forEach(formItem => {
-      if (formItem.Widget === 'radio-buttons') {
+      if (formItem.Widget === "radio-buttons") {
         items.push(fieldset(formItem));
       } else {
         items.push(field(formItem))
@@ -131,21 +131,24 @@ function createDFL(spreadsheetDefinition) {
     () => {
       document.body.innerHTML = "";
       document.body.id = "dfl-form";
-      document.body.addEventListener('submit', e => {
+      document.body.addEventListener("submit", e => {
         e.preventDefault();
+        const sheet = e.submitter.closest("dfl-button").model.formElement.url;
         const data = window.adobe_dc_forms.formHost.data;
         const postData = {
           data: Object.entries(data).map(([name, value]) => ({name, value})),
-          sheet: "https://adobe.sharepoint.com/:x:/r/sites/dc-forms/Shared%20Documents/publish/postalResults.xlsx?d=w859b8de424ca4d619e0b18bedb312c07&csf=1&web=1&e=Zl19HL"
+          // sheet: "https://adobe.sharepoint.com/:x:/r/sites/dc-forms/Shared%20Documents/publish/postalResults.xlsx?d=w859b8de424ca4d619e0b18bedb312c07&csf=1&web=1&e=Zl19HL"
+          sheet
         };
         console.dir(postData);
         const url = "https://ccgrowth.servicebus.windows.net/formsink/messages";
         fetch(url, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
+            "Authorization": "SharedAccessSignature sr=https://ccgrowth.servicebus.windows.net/formsink/messages&sig=RFndMU/yHZrlchNBfHlIdulld4URAgUAQdAlqVLf1Bw=&se=1634259041&skn=send"
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(postData),
         });
       });
       window.document.dispatchEvent(new Event("DOMContentLoaded"));
@@ -186,4 +189,4 @@ function load() {
     document.body.innerHTML = loading;
   }
 }
-window.addEventListener('load', load);
+window.addEventListener("load", load);
