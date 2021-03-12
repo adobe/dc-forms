@@ -132,7 +132,10 @@ function createDFL(spreadsheetDefinition) {
       document.body.id = "dfl-form";
       document.body.addEventListener("submit", e => {
         e.preventDefault();
-        const sheet = e.submitter.closest("dfl-button").model.formElement.url;
+      });
+      document.body.addEventListener("dfl-submit-form", e => {
+        e.preventDefault();
+        const sheet = e.target.model.formElement.url;
         const data = window.adobe_dc_forms.formHost.data;
         const postData = {
           data: Object.entries(data).map(([name, value]) => ({name, value})),
