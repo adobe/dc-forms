@@ -131,7 +131,23 @@ function createDFL(spreadsheetDefinition) {
       document.body.innerHTML = "";
       document.body.id = "dfl-form";
       window.document.dispatchEvent(new Event("DOMContentLoaded"));
-      // document.getElementById("loading").style.display = "none";
+      document.body.addEventListener('submit', e => {
+        e.preventDefault();
+        const data = window.adobe_dc_forms.formHost.data;
+        const postData = {
+          data: Object.entries(data).map(([name, value]) => ({name, value})),
+          sheet: "https://adobe.sharepoint.com/:x:/r/sites/dc-forms/Shared%20Documents/publish/postalResults.xlsx?d=w859b8de424ca4d619e0b18bedb312c07&csf=1&web=1&e=Zl19HL"
+        };
+        console.dir(postData);
+        const url = "https://ccgrowth.servicebus.windows.net/formsink/messages";
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+      });
     },
     false
   );
@@ -161,28 +177,12 @@ if (form) {
 }
 function load() {
   window.removeEventListener("load", load);
-  document.body.id = "dfl-form";
-  const loading = `<div id="loading">
-    <div id="loading-message">loading form: ${form}</div>
-      <img src="/loading.gif" style="width:64px;height:64px;"></img>
-    </div>`
-  document.body.innerHTML = loading;
-  document.body.addEventListener('submit', e => {
-    e.preventDefault();
-    const data = window.adobe_dc_forms.formHost.data;
-    const postData = {
-      data: Object.entries(data).map(([name, value]) => ({name, value})),
-      sheet: "https://adobe.sharepoint.com/:x:/r/sites/dc-forms/Shared%20Documents/publish/postalResults.xlsx?d=w859b8de424ca4d619e0b18bedb312c07&csf=1&web=1&e=Zl19HL"
-    };
-    console.dir(postData);
-    const url = "https://ccgrowth.servicebus.windows.net/formsink/messages";
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-  });
+  if (document.body.id !== "dfl-form") {
+    const loading = `<div id="loading">
+      <div id="loading-message">loading form: ${form}</div>
+        <img src="/loading.gif" style="width:64px;height:64px;"></img>
+      </div>`
+    document.body.innerHTML = loading;
+  }
 }
 window.addEventListener('load', load);
