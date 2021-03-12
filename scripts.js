@@ -124,7 +124,8 @@ function createDFL(spreadsheetDefinition) {
   console.dir(dfl);
   window.adobe_dc_forms={templates:{[form]: dfl}};
   const formsRuntime = document.createElement("script");
-  formsRuntime.src = "https://static.echocdnawspreview.com/signdx-cdn/latest/dfl/dfl-forms.bundle.js";
+  // formsRuntime.src = "https://static.echocdnawspreview.com/signdx-cdn/latest/dfl/dfl-forms.bundle.js";
+  formsRuntime.src = "/dfl-forms.bundle.js";
   formsRuntime.addEventListener(
     "load",
     () => {
