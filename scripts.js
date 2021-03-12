@@ -12,7 +12,7 @@
 
 const searchParams = new URLSearchParams(document.location.search);
 const form = searchParams.get("form");
-
+console.log("loading script.js");
 /*
  * Create a DFL field from a spreadsheet row
  */
@@ -128,9 +128,10 @@ function createDFL(spreadsheetDefinition) {
   formsRuntime.addEventListener(
     "load",
     () => {
+      document.body.innerHTML = "";
       document.body.id = "dfl-form";
       window.document.dispatchEvent(new Event("DOMContentLoaded"));
-      document.getElementById("loading").style.display = "none";
+      // document.getElementById("loading").style.display = "none";
     },
     false
   );
