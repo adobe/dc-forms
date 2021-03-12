@@ -130,7 +130,6 @@ function createDFL(spreadsheetDefinition) {
     () => {
       document.body.innerHTML = "";
       document.body.id = "dfl-form";
-      window.document.dispatchEvent(new Event("DOMContentLoaded"));
       document.body.addEventListener('submit', e => {
         e.preventDefault();
         const data = window.adobe_dc_forms.formHost.data;
@@ -148,6 +147,7 @@ function createDFL(spreadsheetDefinition) {
           body: JSON.stringify(data),
         });
       });
+      window.document.dispatchEvent(new Event("DOMContentLoaded"));
     },
     false
   );
