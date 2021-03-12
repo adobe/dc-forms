@@ -158,7 +158,8 @@ if (form) {
     spreadsheetDefinition && createDFL(spreadsheetDefinition);
   });
 }
-window.addEventListener('load', () => {
+function load() {
+  window.removeEventListener("load", load);
   document.body.id = "dfl-form";
   const loading = `<div id="loading">
     <div id="loading-message">loading form: ${form}</div>
@@ -182,4 +183,5 @@ window.addEventListener('load', () => {
       body: JSON.stringify(data),
     });
   });
-});
+}
+window.addEventListener('load', load);
