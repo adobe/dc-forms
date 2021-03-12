@@ -148,8 +148,8 @@ function createDFL(spreadsheetDefinition) {
           method: "POST",
           mode: "cors",
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": "SharedAccessSignature sr=https://ccgrowth.servicebus.windows.net/formsink/messages&sig=RFndMU/yHZrlchNBfHlIdulld4URAgUAQdAlqVLf1Bw=&se=1634259041&skn=send"
+            "Content-Type": "application/json"
+            // "Authorization": "SharedAccessSignature sr=https://ccgrowth.servicebus.windows.net/formsink/messages&sig=RFndMU/yHZrlchNBfHlIdulld4URAgUAQdAlqVLf1Bw=&se=1634259041&skn=send"
           },
           body: JSON.stringify(postData),
         });
