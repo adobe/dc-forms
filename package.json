@@ -1,0 +1,22 @@
+{
+  "name": "dc-forms",
+  "version": "1.0.0",
+  "description": "DC forms in Helix sample",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobe/dc-forms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adobe/dc-forms/issues"
+  },
+  "homepage": "https://github.com/adobe/dc-forms#readme",
+  "devDependencies": {
+    "eslint": "^7.21.0"
+  }
+}
