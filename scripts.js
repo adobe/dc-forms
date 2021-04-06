@@ -10,21 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-/*
-fetch("https://git.corp.adobe.com/pages/jbrinkma/dc-forms-runtime/dist/dfl-forms.bundle.js").then(r => {
-  console.dir(r);
-  console.log(r.text());
-});
-*/
-
 const runtime = document.createElement("script");
-//runtime.src = "http://git.corp.adobe.com/pages/jbrinkma/dc-forms-runtime/dist/dfl-forms.bundle.js";
-
-runtime.src= "https://git.corp.adobe.com/login?return_to=https%3A%2F%2Fgit.corp.adobe.com%2Fpages%2Fjbrinkma%2Fdc-forms-runtime%2Fdist%2Fdfl-forms.bundle.js";
+if (document.location.hostname === "localhost") {
+   runtime.src = "http://localhost:8086/dfl-forms.bundle.js";
+} else {
+  runtime.src = "https://dc.dev.dexilab.acrobat.com/dc-test-dropin/2.9.7_0.13.0/forms/dfl-forms.bundle.js";
+}
 runtime.addEventListener("load", (e) => {
   console.dir(e);
 }, false);
 runtime.addEventListener("error", (e) => {
-  console.log("error");
+  document.body.innerHTML = "<h1>You must be on the Adobe network to see this content</h1>";
 }, false);
 document.head.appendChild(runtime);
