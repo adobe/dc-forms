@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/adobe/dc-forms#readme",
   "devDependencies": {
-    "eslint": "7.24.0"
+    "eslint": "7.26.0"
   }
 }
