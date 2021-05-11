@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
   if (document.location.hostname === "localhost" || /local/.test(document.location.search)) {
      runtime.src = "http://localhost:8086/dfl-forms.bundle.js";
   } else {
-    runtime.src = "https://dc.dev.dexilab.acrobat.com/dc-test-dropin/2.9.7_0.19.0/forms/dfl-forms.bundle.js";
+    runtime.src = "https://dc.dev.dexilab.acrobat.com/dc-test-dropin/2.9.7_0.20.0/forms/dfl-forms.bundle.js";
   }
   runtime.addEventListener("load", (e) => {
     console.dir(e);

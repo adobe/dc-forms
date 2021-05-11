@@ -14,12 +14,3 @@ body {
     background-color: white;
     font-family: Arial, sans-serif;
 }
-.label-field {
-    display: table;
-}
-.label-field > div {
-    display: table-row;
-}
-.label-field > div > div {
-    display:table-cell;
-}
