@@ -22,16 +22,67 @@ document.addEventListener("DOMContentLoaded", ()=> {
     }
 
     runtime.addEventListener("load", (e) => {
-      console.dir(e);
       document
         .querySelector(".button-control")
         .addEventListener("click", () => {
-          console.log('clicked');
+            const street = document.getElementById("street-0").value;
+            const city = document.getElementById("city-0").value;
+            const province = document.getElementById("province-0").value;
+            const state = document.getElementById("state-0").value;
+            const country = document.getElementById("country-0").value;
+            const postalCode = document.getElementById("postalcode-0").value;
+            const zipCode = document.getElementById("zipcode-0").value;
+
+            const insurance1 = document.getElementById("ins1-0").checked;
+            const insurance2 = document.getElementById("ins2-0").checked;
+            const insurance3 = document.getElementById("ins3-0").checked;
+
+            const insuranceTotal = document.getElementById("insuranceTotal-0").value;
+
+            var raw = JSON.stringify({
+              "values": [
+                [
+                  street,
+                  country,
+                  'FALSE',
+                  insuranceTotal,
+                  insurance3,
+                  city,
+                  state,
+                  province,
+                  zipCode,
+                  insurance1,
+                  new Date().toISOString().slice(0, 10),
+                  '',
+                  insurance2,
+                  '',
+                  0
+                ]
+              ]
+            });
+
+            var headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            headers.append("Authorization", `Bearer ${token}`);
+
+            var requestOptions = {
+              method: 'POST',
+              headers: headers,
+              body: raw,
+              redirect: 'follow'
+            };
+
+            fetch("https://graph.microsoft.com/v1.0/drives/b!s3ZzvSH33EKxLUmJDhnggVXh-0kbIBdLpwjrY_o2UHYG4iI4l3B1TICOn8VN3fj3/items/01PFYHN4PERWNYLSREMFGZ4CYYX3NTCLAH/workbook/tables/intake_form/rows", requestOptions)
+              .then(response => response.text())
+              .then(result => console.log(result))
+              .catch(error => console.log('error', error));
+          });
         });
+
+      runtime.addEventListener("error", () => {
+        document.body.innerHTML = "<h1>You must be on the Adobe network to see this content</h1>";
+      }, false);
+      document.head.appendChild(runtime);
     }, false);
-    runtime.addEventListener("error", () => {
-      document.body.innerHTML = "<h1>You must be on the Adobe network to see this content</h1>";
-    }, false);
-    document.head.appendChild(runtime);
-  });
 });
+
