@@ -76,79 +76,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
           document.querySelector("body").style.visibility = "visible";
-        }, 50);
 
-        document
-          .querySelector(".button-control")
-          .addEventListener("click", () => {
-            const firstName = document.getElementById("FirstName-0").value;
-            const lastName = document.getElementById("LastName-0").value;
-            const street = document.getElementById("street-0").value;
-            const city = document.getElementById("city-0").value;
-            const province = document.getElementById("province-0").value;
-            const state = document.getElementById("state-0").value;
-            const country = document.getElementById("country-0").value;
-            const postalCode = document.getElementById("postalcode-0").value;
-            const zipCode = document.getElementById("zipcode-0").value;
+          document
+            .querySelector(".button-control")
+            .addEventListener("click", () => {
+              const firstName = document.getElementById("FirstName-0").value;
+              const lastName = document.getElementById("LastName-0").value;
+              const street = document.getElementById("street-0").value;
+              const city = document.getElementById("city-0").value;
+              const province = document.getElementById("province-0").value;
+              const state = document.getElementById("state-0").value;
+              const country = document.getElementById("country-0").value;
+              const postalCode = document.getElementById("postalcode-0").value;
+              const zipCode = document.getElementById("zipcode-0").value;
 
-            const substanceUse = document.querySelector(
-              'input[name="substanceUse"]:checked'
-            ).value;
+              const substanceUse = document.querySelector(
+                'input[name="substanceUse"]:checked'
+              ).value;
 
-            const roleStillImages = document.getElementById("currentRole-stillImages-0").value;
-            const role3dModels = document.getElementById("currentRole-3dModels-0").value;
-            const roleWebsite = document.getElementById("currentRole-website-0").value;
-            const roleARVR = document.getElementById("currentRole-arvr-0").value;
-            const rolePrinting = document.getElementById("currentRole-printing-0").value;
+              const roleStillImages = document.getElementById("currentRole-stillImages-0").value;
+              const role3dModels = document.getElementById("currentRole-3dModels-0").value;
+              const roleWebsite = document.getElementById("currentRole-website-0").value;
+              const roleARVR = document.getElementById("currentRole-arvr-0").value;
+              const rolePrinting = document.getElementById("currentRole-printing-0").value;
 
-            const painPoint = document.querySelector(
-              'input[name="painPoint"]:checked'
-            ).value;
+              const painPoint = document.querySelector(
+                'input[name="painPoint"]:checked'
+              ).value;
 
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", `Bearer ${token}`);
+              var myHeaders = new Headers();
+              myHeaders.append("Content-Type", "application/json");
+              myHeaders.append("Authorization", `Bearer ${token}`);
 
-            var raw = JSON.stringify({
-              "values": [
-                [
-                  firstName,
-                  lastName,
-                  street,
-                  city,
-                  province,
-                  state,
-                  country,
-                  postalCode,
-                  zipCode,
-                  substanceUse,
-                  roleStillImages,
-                  role3dModels,
-                  roleWebsite,
-                  roleARVR,
-                  rolePrinting,
-                  painPoint
+              var raw = JSON.stringify({
+                "values": [
+                  [
+                    firstName,
+                    lastName,
+                    street,
+                    city,
+                    province,
+                    state,
+                    country,
+                    postalCode,
+                    zipCode,
+                    substanceUse,
+                    roleStillImages,
+                    role3dModels,
+                    roleWebsite,
+                    roleARVR,
+                    rolePrinting,
+                    painPoint
+                  ]
                 ]
-              ]
+              });
+
+              var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+              };
+
+              fetch("https://graph.microsoft.com/v1.0/drives/b!s3ZzvSH33EKxLUmJDhnggVXh-0kbIBdLpwjrY_o2UHYG4iI4l3B1TICOn8VN3fj3/items/01PFYHN4JXRKJUPH4R2RE3Y7SWFQPATPUE/workbook/tables/intake_form/rows", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+
+              window.location = "http://localhost:3000/sko-modeler-beta-thankyou";
             });
-
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
-
-            fetch("https://graph.microsoft.com/v1.0/drives/b!s3ZzvSH33EKxLUmJDhnggVXh-0kbIBdLpwjrY_o2UHYG4iI4l3B1TICOn8VN3fj3/items/01PFYHN4JXRKJUPH4R2RE3Y7SWFQPATPUE/workbook/tables/intake_form/rows", requestOptions)
-              .then(response => response.text())
-              .then(result => console.log(result))
-              .catch(error => console.log('error', error));
-
-            window.location = "http://localhost:3000/sko-modeler-beta-thankyou";
-          });
-      },
-      false
-    );
+        },
+          false
+        );
+      }, 50);
 
     runtime.addEventListener(
       "error",
