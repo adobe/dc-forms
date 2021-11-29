@@ -129,6 +129,11 @@ h2 {
   padding: 0 2 rem;
 }
 
+dfl-form-root {
+  min-height: 100vh !important;
+  height: 100%;
+}
+
 dfl-form-root > div > div > div > p:nth-of-type(2) {
   color: #505050;
   font-weight: 300;
@@ -151,4 +156,43 @@ p:nth-of-type(3) {
 
 code {
   display: none;
+}
+
+.input-container {
+  padding-bottom: 15px;
+}
+
+p strong {
+  color: #323232;
+  font-weight: 300;
+}
+
+.header.main {
+    background: white;
+    color: #FA0F00;
+}
+
+.header.is-Loaded {
+    display: block;
+    opacity: 1;
+}
+
+.header .nav-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1440px) {
+  .header .container {
+    /* max-width: 1440px; */
+    max-width: var(--grid-xl-desktop-container-width);
+  }
+}
+
+.header.main img {
+    height: 65px;
+    width: auto;
+    max-width: initial;
+    vertical-align: middle;
 }

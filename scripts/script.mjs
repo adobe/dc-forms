@@ -57,6 +57,23 @@ document.addEventListener("DOMContentLoaded", () => {
           checkbox.parentElement.classList.add("fieldContainer");
         });
 
+        const body = document.getElementsByTagName("body")[0];
+        const header = document.createElement("header");
+        header.innerHTML = `<div class="header--nav--main- header nav main is-Loaded" data-block-select=".header">
+  <div class="container">
+    <div class="nav-container">
+      <picture>
+        <source media="(max-width: 400px)"
+          srcset="./assets/header.png">
+        <img
+          src="./assets/header.png"
+          loading="eager">
+      </picture>
+    </div>
+  </div>
+</div>`;
+        body.insertBefore(header, body.firstChild);
+
         setTimeout(() => {
           document.querySelector("body").style.visibility = "visible";
         }, 50);
@@ -126,6 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
               .then(response => response.text())
               .then(result => console.log(result))
               .catch(error => console.log('error', error));
+
+            window.location = "http://localhost:3000/sko-modeler-beta-thankyou";
           });
       },
       false
