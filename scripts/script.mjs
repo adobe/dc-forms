@@ -143,12 +143,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(result => console.log(result))
                 .catch(error => console.log('error', error));
 
-              window.location = "http://localhost:3000/sko-modeler-beta-thankyou";
+              setTimeout(() => {
+                window.location = "http://localhost:3000/sko-modeler-beta-thankyou";
+              }, 1000);
             });
         },
           false
         );
-      }, 50);
+      }, 2000);
 
     runtime.addEventListener(
       "error",
